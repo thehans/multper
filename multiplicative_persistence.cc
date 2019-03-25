@@ -20,7 +20,8 @@ using namespace boost::multiprecision;
 // boil down to some fast lookups of powers, and then a few 
 // multiplications depending on which digits are present.
 // 
-// Finding the next 
+// Inspired by the NumberPhile video about 277777788888899
+// https://www.youtube.com/watch?v=Wim9WJeDTHQ
 
 class digit_bag {
 public:
@@ -205,7 +206,7 @@ digit_bag::pow_cache_t digit_bag::cache;
 
 int main(int argc, char** argv) {
     if (argc != 3) {
-        cout << "Search for multiplicative persistence for numbers with length in the range of [START:END]" << endl;
+        cout << "Search for multiplicative persistence of numbers with length in the range of [START:END)" << endl;
         cout << "usage: multper START END" << endl;
         return 1;
     }
@@ -218,7 +219,7 @@ int main(int argc, char** argv) {
     cout << "Done." << endl;
 
     unsigned int max_count = 0;
-    for(unsigned int length=START; length<=END;++length) {
+    for(unsigned int length=START; length<END; ++length) {
         digit_bag bag(length);
         pair<digit_bag::digits_t, unsigned int> current_max = bag.check_all();
         if (current_max.second > max_count) {
@@ -233,4 +234,5 @@ int main(int argc, char** argv) {
     }
     return 0;
 }
+
 
