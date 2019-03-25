@@ -30,7 +30,9 @@ Optional `MAX` argument indicates the initial value when checking maximum persis
 
 So far I have tried checking up to around 1400 digits, but unfortunately it seems like the max persistence drops to 2 after a certain length. I'm fairly certain the algorithm for checking and generation the next combination based on rules is all correct, but welcome any bug reports or suggestions for enhancement.
 
-The program is single-threaded, but could be run on multiple cores by running multiple instances with different length ranges.  The end number is not included in the search for simplifying running batches like this.  So for example you can run `multper 1000 1100` and `multper 1100 1200` without the ranges overlapping.
+The program is single-threaded, but can be run on multiple cores by calling multiple instances with different length ranges.  The end number is not included in the search for simplifying running batches like this.  So for example you can run `multper 1000 1100` and `multper 1100 1200` without the ranges overlapping.  
+
+I have added a bash script `do_work.sh` which takes 4 arguments representing `START` `STEP` `END` and `CPUS`, and evaluates from `START` to `END`, splitting the load across `CPUS` #of parallel tasks, with each task taking a range of digits equal to `STEP`.
 
 Let me know if you find any persistence higher than 11 with my program!
 
