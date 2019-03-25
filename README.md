@@ -1,7 +1,7 @@
 # multper
 Efficient Multiplicative Persistence checker
 
-Inspired by the NumberPhile video about 277777788888899
+Inspired by the Numberphile video about 277777788888899
 https://www.youtube.com/watch?v=Wim9WJeDTHQ
 
 This program represents large numbers as a "bag" of digits, where
@@ -27,11 +27,11 @@ multper START END
 ```
 Where `START >= 2`, will check all numbers (which match the above rules) with a number of digits in the range of `[START:END)`.  For each length checked, the smallest number of that length with the highest persistence is printed.
 
-So far I have tried checking up to around 1400 digits, but unfortunately it seems like the max persistance drops to 2 after a certain length. I'm fairly certain the algorithm for checking and generation the next combination based on rules is all correct, but welcome any bug reports or suggestions for enhancement.
+So far I have tried checking up to around 1400 digits, but unfortunately it seems like the max persistence drops to 2 after a certain length. I'm fairly certain the algorithm for checking and generation the next combination based on rules is all correct, but welcome any bug reports or suggestions for enhancement.
 
 The program is single-threaded, but could be run on multiple cores by running multiple instances with different length ranges.  The end number is not included in the search for simplifying running batches like this.  So for example you can run `multper 1000 1100` and `multper 1100 1200` without the ranges overlapping.
 
-Let me know if you find any persistance higher than 11 with my program!
+Let me know if you find any persistence higher than 11 with my program!
 
 ## Dependencies
  - Boost
@@ -49,7 +49,7 @@ clang++ -O3 -o multper ./multiplicative_persistence.cc -lgmp -std=c++17
 ```
 
 ## Example output
-`multper` prints anything that beats the current maximum persistence(with starts at zero on every run).  Printing `NEW MAX` whenever a higher persistence is found.  Otherwise it prints the best persistence found for that length.
+`multper` prints anything that beats the current maximum persistence(which starts at zero on every run).  Printing `NEW MAX` whenever a higher persistence is found.  Otherwise it prints the best persistence found for that length.
 
 ```
 ./multper 2 18
