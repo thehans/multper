@@ -23,9 +23,10 @@ Numbers from 2 to 233 digits are computed in 11s on my laptop using this approac
 
 ## Usage
 ```
-multper START END
+multper START END [MAX]
 ```
 Where `START >= 2`, will check all numbers (which match the above rules) with a number of digits in the range of `[START:END)`.  For each length checked, the smallest number of that length with the highest persistence is printed.
+Optional `MAX` argument indicates the initial value when checking maximum persistence, above which a special `NEW MAX` output line will be printed.  (Default 0)
 
 So far I have tried checking up to around 1400 digits, but unfortunately it seems like the max persistence drops to 2 after a certain length. I'm fairly certain the algorithm for checking and generation the next combination based on rules is all correct, but welcome any bug reports or suggestions for enhancement.
 
@@ -34,26 +35,26 @@ The program is single-threaded, but could be run on multiple cores by running mu
 Let me know if you find any persistence higher than 11 with my program!
 
 ## Dependencies
- - Boost
- - GMP library
- - compiler supporting C++17
+ - [Boost Multiprecision](https://www.boost.org/doc/libs/1_69_0/libs/multiprecision/doc/html/index.html)
+    Boost Multiprecision supports three backends, GMP, libtommath, and cpp_int
+
+ ### Optional Dependencies
+ - [GMP](https://gmplib.org/) (technically optional as boost offers other multiprecision implementations, but **Highly Recommended** for fastest execution)
+ - [libtommath](https://github.com/libtom/libtommath) Alternative multiprecision implementation (Warning: ~50x slower than GMP)
+ - "cpp_int" is a multiprecision implementation builtin to boost which can be used in lieu of the above libraries for no added dependency. (Warning: ~4x slower than GMP) 
 
 ## Compiling
-Just run:
+`multper` can be built using `cmake`, just define which multiprecision library to use with `-DMPLIB=` `GMP`, `CPP`, or `TOM`
+Example:
 ```
-g++ -O3 -o multper ./multiplicative_persistence.cc -lgmp -std=c++17
-```
-OR
-```
-clang++ -O3 -o multper ./multiplicative_persistence.cc -lgmp -std=c++17
+cmake -DMPLIB=GMP
+make
 ```
 
 ## Example output
-`multper` prints anything that beats the current maximum persistence(which starts at zero on every run).  Printing `NEW MAX` whenever a higher persistence is found.  Otherwise it prints the best persistence found for that length.
 
 ```
 ./multper 2 18
-Initializing lookup...Done.
 
 NEW MAX 4 persistence for 2 digits: { 0, 0, 0, 0, 0, 0, 0, 2, 0, 0 }
 
