@@ -92,6 +92,8 @@ NEW MAX 11 persistence for 15 digits: { 0, 0, 1, 0, 0, 0, 0, 6, 6, 2 }
 ```
 
 As you can see in the output, the numbers between braces are the count of each digit from 0 to 9.
-`NEW MAX 11 persistence for 15 digits: { 0, 0, 1, 0, 0, 0, 0, 6, 6, 2 }`
-So there's `277777788888899` 
+```
+NEW MAX 11 persistence for 15 digits: { 0, 0, 1, 0, 0, 0, 0, 6, 6, 2 }
+```
+Which corresponds to: `277777788888899`
 
